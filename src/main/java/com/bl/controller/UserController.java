@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 public class UserController {
 
     @Autowired
     EmployeePayrollService employeePayrollService;
-
+    //http:localhost/employee-payroll/create (dto)
     @PostMapping("/create")
     public ResponseEntity<EmployeePayrollDto> createUser(@RequestBody EmployeePayrollDto user){
         try{
@@ -25,6 +26,7 @@ public class UserController {
         }
     }
 
+    //http:localhost/employee-payroll/update (dto)
     @PutMapping("/update")
     public ResponseEntity<EmployeePayrollDto> updateUser(@RequestBody EmployeePayrollDto user){
         try{
@@ -34,6 +36,7 @@ public class UserController {
         }
     }
 
+    //http://localhost:8080/employee-payroll/delete/1
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<EmployeePayrollDto> deleteUser(@PathVariable("id")Long id){
         try{
@@ -43,6 +46,7 @@ public class UserController {
         }
     }
 
+    //http://localhost:8080/employee-payroll/get
     @GetMapping("/get")
     public ResponseEntity<List<EmployeePayrollDto>> getAllUser(){
         try{
