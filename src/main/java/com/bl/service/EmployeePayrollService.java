@@ -24,7 +24,7 @@ public class EmployeePayrollService {
             return new EmployeePayrollDto(employeePayrollRepository.save(employeePayroll));
         }
 
-        throw new DetailsNotProvidedExceptions("Invalid Data");
+        throw new DetailsNotProvidedExceptions("Invalid Data..!!! Enter Valid Data");
     }
 
     public EmployeePayrollDto UpdateUser(EmployeePayrollDto employeePayrollDto){

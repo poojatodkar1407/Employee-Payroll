@@ -1,6 +1,8 @@
 package com.bl.controller;
 
 import com.bl.dto.EmployeePayrollDto;
+import com.bl.dto.ResponseDto;
+import com.bl.exceptions.PayrollException;
 import com.bl.exceptions.UserNotFound;
 import com.bl.service.EmployeePayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class UserController {
         try{
             return ResponseEntity.status(HttpStatus.OK).body(employeePayrollService.UpdateUser(user));
         } catch (UserNotFound e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            throw new PayrollException(PayrollException.ExceptionTypes.EMPLOYEE_NOT_FOUND);
         }
     }
 
