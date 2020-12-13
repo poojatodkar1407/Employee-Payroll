@@ -3,6 +3,7 @@ package com.bl.service;
 import com.bl.domain.EmployeePayroll;
 import com.bl.dto.EmployeePayrollDto;
 import com.bl.exceptions.DetailsNotProvidedExceptions;
+import com.bl.exceptions.PayrollException;
 import com.bl.exceptions.UserNotFound;
 import com.bl.repository.EmployeePayrollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +21,7 @@ public class EmployeePayrollService {
     private EmployeePayrollRepository employeePayrollRepository;
 
     public EmployeePayrollDto CreateUser(EmployeePayrollDto employeePayrollDto) {
+
         if (Objects.nonNull(employeePayrollDto.getName()) && Objects.nonNull(employeePayrollDto.getSalary())) {
             EmployeePayroll employeePayroll = new EmployeePayroll(employeePayrollDto.getName(), employeePayrollDto.getSalary());
             return new EmployeePayrollDto(employeePayrollRepository.save(employeePayroll));

@@ -26,6 +26,8 @@ public class EmployeePayroll implements Serializable {
 
     private String salary;
 
+    private LocalDateTime registerDate;
+    private boolean isVerify;
     public EmployeePayroll(){
 
     }

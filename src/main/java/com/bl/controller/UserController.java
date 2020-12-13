@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class UserController {
     EmployeePayrollService employeePayrollService;
     //http:localhost/employee-payroll/create (dto)
     @PostMapping("/create")
-    public ResponseEntity<EmployeePayrollDto> createUser(@RequestBody EmployeePayrollDto user){
+    public ResponseEntity<EmployeePayrollDto> createUser(@RequestBody @Valid EmployeePayrollDto user){
         try{
             return ResponseEntity.status(HttpStatus.CREATED).body(employeePayrollService.CreateUser(user));
         } catch (UserNotFound e){

@@ -8,6 +8,7 @@ import lombok.Data;
 public class EmployeePayrollDto {
 
     private Long id;
+
     private String name;
     private String salary;
 
