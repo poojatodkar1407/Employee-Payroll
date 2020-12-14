@@ -14,7 +14,7 @@ public class EmployeeGlobalExceptionHandler {
         @ExceptionHandler(PayrollException.class)
         public ResponseEntity<ResponseDto> handleCMSException(PayrollException payrollException){
             //log.error(codinClubUserException.getMessage());
-            return new ResponseEntity<ResponseDto>(new ResponseDto(null, payrollException.exceptionTypes.errorMessage),
+            return new ResponseEntity<ResponseDto>(new ResponseDto(null,null, payrollException.exceptionTypes.errorMessage),
                     HttpStatus.BAD_REQUEST);
         }
 

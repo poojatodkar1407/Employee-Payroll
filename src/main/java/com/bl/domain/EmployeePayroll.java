@@ -21,41 +21,16 @@ public class EmployeePayroll implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NonNull
     private String name;
-
     private String salary;
+    private String gender;
+    private String department;
+    private String startDate;
 
-    private LocalDateTime registerDate;
-    private boolean isVerify;
     public EmployeePayroll(){
 
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSalary() {
-        return salary;
-    }
-
-    public void setSalary(String salary) {
-        this.salary = salary;
-    }
 
     public EmployeePayroll(String name, String salary) {
         this.name = name;

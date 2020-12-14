@@ -11,6 +11,10 @@ public class EmployeePayrollDto {
 
     private String name;
     private String salary;
+    private String gender;
+    private String department;
+    private String startDate;
+
 
     public EmployeePayrollDto(){
 
@@ -20,5 +24,8 @@ public class EmployeePayrollDto {
         this.id = user.getId();
         this.name = user.getName();
         this.salary = user.getSalary();
+        this.gender = user.getGender();
+        this.department = user.getDepartment();
+        this.startDate = user.getStartDate();
     }
 }
