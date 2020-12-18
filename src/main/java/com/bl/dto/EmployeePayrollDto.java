@@ -4,6 +4,8 @@ package com.bl.dto;
 import com.bl.domain.EmployeePayroll;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class EmployeePayrollDto {
 
@@ -12,10 +14,9 @@ public class EmployeePayrollDto {
     private String name;
     private String salary;
     private String gender;
-    private String department;
+    private List<String> departments;
     private String startDate;
-
-
+    
     public EmployeePayrollDto(){
 
     }
@@ -25,7 +26,7 @@ public class EmployeePayrollDto {
         this.name = user.getName();
         this.salary = user.getSalary();
         this.gender = user.getGender();
-        this.department = user.getDepartment();
+        this.departments = user.getDepartments();
         this.startDate = user.getStartDate();
     }
 }

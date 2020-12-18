@@ -3,7 +3,6 @@ package com.bl.service;
 import com.bl.domain.EmployeePayroll;
 import com.bl.dto.EmployeePayrollDto;
 import com.bl.exceptions.DetailsNotProvidedExceptions;
-import com.bl.exceptions.PayrollException;
 import com.bl.exceptions.UserNotFound;
 import com.bl.repository.EmployeePayrollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class EmployeePayrollService {
     public EmployeePayrollDto CreateUser(EmployeePayrollDto employeePayrollDto) {
 
         if (Objects.nonNull(employeePayrollDto.getName()) && Objects.nonNull(employeePayrollDto.getSalary())) {
-            EmployeePayroll employeePayroll = new EmployeePayroll(employeePayrollDto.getName(), employeePayrollDto.getSalary());
+            EmployeePayroll employeePayroll = new EmployeePayroll(employeePayrollDto.getName(), employeePayrollDto.getSalary(),employeePayrollDto.getGender(),employeePayrollDto.getDepartments(),employeePayrollDto.getStartDate());
             return new EmployeePayrollDto(employeePayrollRepository.save(employeePayroll));
         }
 
@@ -36,9 +35,19 @@ public class EmployeePayrollService {
             if(Objects.nonNull(employeePayrollDto.getName())){
                 employeePayroll.setName(employeePayrollDto.getName());
             }
-            if(Objects.nonNull(employeePayroll.getSalary())){
-                employeePayroll.setSalary(employeePayroll.getSalary());
+            if(Objects.nonNull(employeePayrollDto.getSalary())){
+                employeePayroll.setSalary(employeePayrollDto.getSalary());
             }
+            if(Objects.nonNull(employeePayrollDto.getGender())){
+                employeePayroll.setGender(employeePayrollDto.getGender());
+            }
+            if(Objects.nonNull(employeePayrollDto.getDepartments())){
+                employeePayroll.setDepartments(employeePayrollDto.getDepartments());
+            }
+            if(Objects.nonNull(employeePayrollDto.getStartDate())){
+                employeePayroll.setStartDate(employeePayrollDto.getStartDate());
+            }
+
            return new EmployeePayrollDto(employeePayrollRepository.save(employeePayroll));
         }).orElseThrow(()-> new UserNotFound("UserNotFound"));
     }
@@ -56,5 +65,11 @@ public class EmployeePayrollService {
                 .stream()
                 .map(employeePayroll -> new EmployeePayrollDto(employeePayroll))
                 .collect(Collectors.toList());
+    }
+
+    public Optional<EmployeePayroll> getById(long id) {
+        System.out.println("in get");
+        System.out.println(employeePayrollRepository.findById(id));
+        return employeePayrollRepository.findById(id);
     }
 }

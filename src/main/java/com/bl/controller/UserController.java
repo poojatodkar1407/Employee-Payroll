@@ -1,5 +1,6 @@
 package com.bl.controller;
 
+import com.bl.domain.EmployeePayroll;
 import com.bl.dto.EmployeePayrollDto;
 import com.bl.dto.ResponseDto;
 import com.bl.exceptions.PayrollException;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(allowedHeaders = "*", origins = "*")
@@ -19,7 +21,7 @@ public class UserController {
 
     @Autowired
     EmployeePayrollService employeePayrollService;
-    //http:localhost/employee-payroll/create (dto)
+    //http://localhost:8080/employee-payroll/create (dto)
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createUser(@RequestBody @Valid EmployeePayrollDto user){
         try{
@@ -58,6 +60,15 @@ public class UserController {
     public ResponseEntity<List<EmployeePayrollDto>> getAllUser(){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(employeePayrollService.getAllUser());
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    //localhost:8080/employe-payroll/getbyid/?id=id
+    @GetMapping("/getbyid")
+    public ResponseEntity<Optional<EmployeePayroll>> getById(@RequestParam long id){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(employeePayrollService.getById(id));
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
